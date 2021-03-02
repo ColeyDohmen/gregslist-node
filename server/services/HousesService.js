@@ -7,15 +7,21 @@ class HousesService {
     return await dbContext.Houses.create(newHouse)
   }
   async find(query={}) {
-    let values = await dbContext.Values.find(query);
-    return values;
+    await dbContext.Houses.find(query);
   }
   async findById(id) {
-    let value = await dbContext.Values.findById(id);
-    if (!value) {
+    const house = await dbContext.Houses.findById(id)
+      if (!house) {
       throw new BadRequest("Invalid Id");
     }
-    return value;
+    return house;
+  }
+
+  async edit(id, body){
+    return await dbContext.Houses.findByIdAndUpdate(id,body, {new:true})
+  }
+  async delete(id){
+    return await dbContext.Houses.findByIdAndDelete(id)
   }
 }
 
