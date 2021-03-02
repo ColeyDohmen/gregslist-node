@@ -9,11 +9,12 @@ export class HousesController extends BaseController {
       .get("", this.getAll)
       .get('/:id', this.getOne)
       .post("", this.create)
+      .put("/:id", this.edit)
       .delete('/:id',this.delete);
   }
   async getAll(req, res, next) {
     try {
-    res.send({data: await housesService.find(req.query), message: "done"});
+    res.send(await housesService.find(req.query));
     } catch (error) {
       next(error);
     }

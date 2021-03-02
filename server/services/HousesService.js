@@ -7,7 +7,7 @@ class HousesService {
     return await dbContext.Houses.create(newHouse)
   }
   async find(query={}) {
-    await dbContext.Houses.find(query);
+    return await dbContext.Houses.find(query);
   }
   async findById(id) {
     const house = await dbContext.Houses.findById(id)
